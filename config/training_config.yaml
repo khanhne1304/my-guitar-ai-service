@@ -1,0 +1,32 @@
+random_seed: 42
+dataset_path: data/clip_level_metrics.csv
+artifacts_dir: artifacts
+test_size: 0.2
+val_size: 0.1
+regression_targets:
+  - pitch_accuracy
+  - timing_accuracy
+  - timing_stability
+  - tempo_deviation_percent
+  - chord_cleanliness_score
+  - overall_score
+classification_target: level_class
+feature_columns:
+  - mean_pitch_error_semitones
+  - std_pitch_error_semitones
+  - mean_timing_offset_ms
+  - std_timing_offset_ms
+  - onset_density
+  - tempo_variation_pct
+  - buzz_ratio
+  - missing_strings_ratio
+  - extra_noise_level
+  - mean_snr_db
+  - attack_smoothness
+  - sustain_consistency
+synthetic_dataset:
+  enabled: true
+  num_samples: 800
+  tempo_target_bpm_range: [60, 160]
+  noise_floor_range: [-55, -20]
+

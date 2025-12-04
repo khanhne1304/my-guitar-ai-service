@@ -1,0 +1,126 @@
+{
+  "regression": {
+    "val": {
+      "pitch_accuracy": {
+        "mae": 2.6592017988942027,
+        "rmse": 3.3035269201184128,
+        "r2": 0.6908734456900354
+      },
+      "timing_accuracy": {
+        "mae": 4.268510193099556,
+        "rmse": 5.753814130356564,
+        "r2": 0.8063206627274204
+      },
+      "timing_stability": {
+        "mae": 2.728599658781594,
+        "rmse": 3.34778760240267,
+        "r2": 0.9174898669295045
+      },
+      "tempo_deviation_percent": {
+        "mae": 1.448957310663681,
+        "rmse": 1.9193516908379413,
+        "r2": 0.013618252673773035
+      },
+      "chord_cleanliness_score": {
+        "mae": 4.476180093452172,
+        "rmse": 5.618211436094802,
+        "r2": 0.47441204661821224
+      },
+      "overall_score": {
+        "mae": 1.9527178204699411,
+        "rmse": 2.4853982972654762,
+        "r2": 0.6913132275474667
+      },
+      "macro_mae": 2.922361145893524,
+      "macro_rmse": 4.013576217856878,
+      "macro_r2": 0.5990045836977353
+    },
+    "test": {
+      "pitch_accuracy": {
+        "mae": 2.6796687820751517,
+        "rmse": 3.250609099469263,
+        "r2": 0.6845539594239795
+      },
+      "timing_accuracy": {
+        "mae": 4.472878232665883,
+        "rmse": 5.683638942222087,
+        "r2": 0.7881049171528882
+      },
+      "timing_stability": {
+        "mae": 2.496175145939174,
+        "rmse": 3.193477147614927,
+        "r2": 0.9266118054402663
+      },
+      "tempo_deviation_percent": {
+        "mae": 1.2876078428732063,
+        "rmse": 1.5781451684685623,
+        "r2": 0.1511378385232246
+      },
+      "chord_cleanliness_score": {
+        "mae": 3.901888150890508,
+        "rmse": 5.011572014103503,
+        "r2": 0.4862329282640524
+      },
+      "overall_score": {
+        "mae": 1.7701554706487646,
+        "rmse": 2.2592218024917448,
+        "r2": 0.7424867482315562
+      },
+      "macro_mae": 2.7680622708487808,
+      "macro_rmse": 3.7810709861447704,
+      "macro_r2": 0.6298546995059945
+    }
+  },
+  "classification": {
+    "val": {
+      "accuracy": 0.875,
+      "macro_f1": 0.7835497835497836
+    },
+    "test": {
+      "accuracy": 0.89375,
+      "macro_f1": 0.8185578013474751
+    }
+  },
+  "config_snapshot": {
+    "random_seed": 42,
+    "dataset_path": "data/clip_level_metrics.csv",
+    "artifacts_dir": "artifacts",
+    "test_size": 0.2,
+    "val_size": 0.1,
+    "regression_targets": [
+      "pitch_accuracy",
+      "timing_accuracy",
+      "timing_stability",
+      "tempo_deviation_percent",
+      "chord_cleanliness_score",
+      "overall_score"
+    ],
+    "classification_target": "level_class",
+    "feature_columns": [
+      "mean_pitch_error_semitones",
+      "std_pitch_error_semitones",
+      "mean_timing_offset_ms",
+      "std_timing_offset_ms",
+      "onset_density",
+      "tempo_variation_pct",
+      "buzz_ratio",
+      "missing_strings_ratio",
+      "extra_noise_level",
+      "mean_snr_db",
+      "attack_smoothness",
+      "sustain_consistency"
+    ],
+    "synthetic_dataset": {
+      "enabled": true,
+      "num_samples": 800,
+      "tempo_target_bpm_range": [
+        60,
+        160
+      ],
+      "noise_floor_range": [
+        -55,
+        -20
+      ]
+    }
+  }
+}
