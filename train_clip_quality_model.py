@@ -126,13 +126,25 @@ def synthesize_dataset(cfg: Dict, dataset_path: Path, seed: int) -> pd.DataFrame
 def load_dataset(dataset_path: Path, cfg: Dict, seed: int) -> pd.DataFrame:
     if dataset_path.exists():
         print(f"[INFO] Tải dataset từ {dataset_path}")
-        return pd.read_csv(dataset_path)
+        df = pd.read_csv(dataset_path)
+        print(f"[INFO] Dataset có {len(df)} mẫu")
+        return df
+
+    # Kiểm tra xem có dataset Guitarset không
+    guitarset_path = dataset_path.parent / "guitarset_metrics.csv"
+    if guitarset_path.exists():
+        print(f"[INFO] Tìm thấy dataset Guitarset tại {guitarset_path}")
+        df = pd.read_csv(guitarset_path)
+        print(f"[INFO] Dataset Guitarset có {len(df)} mẫu")
+        return df
 
     synthetic_cfg = cfg.get("synthetic_dataset", {})
     if not synthetic_cfg.get("enabled", False):
         raise FileNotFoundError(
-            f"Dataset không tồn tại tại {dataset_path} và synthetic_dataset.disabled."
+            f"Dataset không tồn tại tại {dataset_path} và synthetic_dataset.disabled. "
+            f"Hãy chạy parse_guitarset_dataset.py để tạo dataset từ Guitarset."
         )
+    print("[WARN] Sử dụng synthetic dataset. Khuyến nghị sử dụng dataset thật từ Guitarset.")
     return synthesize_dataset(synthetic_cfg, dataset_path, seed)
 
 
